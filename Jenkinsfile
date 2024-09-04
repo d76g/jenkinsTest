@@ -18,7 +18,7 @@ pipeline {
     }
     stage ('Stop Containers') {
         steps {
-          bat 'docker compose docker-compose.yml down'
+          bat 'docker-compose down'
         }
     }
     stage ('Test') {
@@ -39,7 +39,7 @@ pipeline {
     }
     stage ('Start Containers') {
         steps {
-            bat 'docker compose  docker-compose.yml up -d --build'
+            bat 'docker-compose -d --build'
         }
     }
     stage('Finalize') {
