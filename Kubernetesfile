@@ -21,18 +21,19 @@ pipeline {
         }
     }
     stage ('Stop Pods') {
-      script {
-        try {
-          bat 'kubectl delete -f service.yml'
-        } catch (Exception e) {
-           echo "No service..."
+        steps {
+            script {
+                def deleteServiceResult = bat(script: 'kubectl delete -f service.yaml', returnStatus: true)
+                if (deleteServiceResult != 0) {
+                    echo "Service deletion failed or service not found, continuing..."
+                }
+
+                def deleteDeploymentResult = bat(script: 'kubectl delete -f deployment.yaml', returnStatus: true)
+                if (deleteDeploymentResult != 0) {
+                    echo "Deployment deletion failed or deployment not found, continuing..."
+                }
+            }
         }
-        try {
-          bat 'kubectl delete -f deployment.yml'
-        } catch (Exception e) {
-           echo "No pods running..."
-        }
-      }
     }
     stage ('Test') {
         steps {
