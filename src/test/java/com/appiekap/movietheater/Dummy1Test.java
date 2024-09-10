@@ -1,4 +1,4 @@
-package com.academy.docker;
+package com.appiekap.movietheater;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +9,6 @@ public class Dummy1Test {
 
     @Test
     public void dummyTestForBoolean(){
-
-
-
-
 
         boolean b = true;
         assertTrue( b);
