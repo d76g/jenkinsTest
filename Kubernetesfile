@@ -62,8 +62,4 @@ pipeline {
 //     }
 
   }
-  environment {
-    DEMO = 'Mvn'
-  }
-
 }
