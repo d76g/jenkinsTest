@@ -8,6 +8,11 @@ pipeline {
       maven 'jenkins-maven'
       jdk 'jdk-16'
   }
+  environment {
+          DEMO = 'Mvn'
+          // Set the path to your kubeconfig file
+          KUBECONFIG = './config' // Replace with the actual path to your kubeconfig file
+      }
   stages {
     stage ('Initialize') {
         steps {
